@@ -9,6 +9,8 @@ ENV ANDROID_HOME "${ANDROID_SDK_ROOT}"
 ENV PATH "$PATH:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${ANDROID_SDK_ROOT}/platform-tools"
 ENV DEBIAN_FRONTEND noninteractive
 
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+
 RUN apt-get -qq update \
  && apt-get install -qqy --no-install-recommends \
       bzip2 \
@@ -24,7 +26,6 @@ RUN apt-get -qq update \
       unzip \
       locales \
       nodejs \
-      npm \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
